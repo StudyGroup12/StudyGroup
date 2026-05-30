@@ -159,7 +159,19 @@ public ResponseEntity<ApiResponse<MyPageResponse>> getMyPage(
 ```java
 .authorizeHttpRequests(auth -> auth
     .requestMatchers("/api/auth/**").permitAll()
+    .requestMatchers("/h2-console/**").permitAll()
     .requestMatchers(HttpMethod.GET, "/api/groups").permitAll() // 예: 그룹 목록은 비로그인도 조회 가능
     .anyRequest().authenticated()
 )
 ```
+
+## 8. CORS — Codespaces 대응
+
+CORS는 로컬(`localhost:5173`)과 GitHub Codespaces(`*.app.github.dev`) 모두 허용하도록 `setAllowedOriginPatterns`로 설정되어 있다.  
+추가 origin이 필요하면 `SecurityConfig.java`의 `corsConfigurationSource()`에 패턴을 추가한다.
+
+## 9. H2 콘솔
+
+개발 중 DB 확인: 백엔드 실행 후 `/h2-console` 접속  
+- JDBC URL: `jdbc:h2:file:./data/studygroup`
+- Username: `sa` / Password: 없음

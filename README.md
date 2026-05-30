@@ -17,55 +17,40 @@
 
 | 분류 | 기술 |
 |------|------|
-| Backend | Java 17, Spring Boot 3, Spring Security, Spring Data JPA |
+| Backend | Java 21, Spring Boot 3, Spring Security, Spring Data JPA |
 | Frontend | React 18, Vite, TypeScript, React Query, React Router |
-| Database | MySQL / MariaDB |
+| Database | H2 (파일 기반, 별도 설치 불필요) |
 | Auth | JWT (Access Token + Refresh Token) |
+| 개발 환경 | GitHub Codespaces |
 
-## 시작하기
+## 시작하기 (GitHub Codespaces)
 
-### 요구사항
-
-- Java 17 이상
-- Node.js 18 이상
-- MySQL 8 이상
-
-### 환경변수 설정
-
-`backend/src/main/resources/application-local.yml` 파일을 직접 생성한다.
-
-```yaml
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/studygroup
-    username: YOUR_DB_USERNAME
-    password: YOUR_DB_PASSWORD
-
-jwt:
-  secret: YOUR_JWT_SECRET_KEY
-```
-
-### 실행
+1. 저장소 페이지에서 `Code` → `Codespaces` → `Create codespace on dev` 클릭
+2. Codespace가 열리면 터미널에서 아래 명령어 실행
 
 ```bash
 # Backend (포트 8080)
 cd backend
 ./gradlew bootRun
 
-# Frontend (포트 5173)
+# Frontend (포트 5173) — 새 터미널에서
 cd frontend
-npm install
 npm run dev
 ```
 
-브라우저에서 `http://localhost:5173` 접속.
+3. Vite 서버가 뜨면 Codespaces가 자동으로 브라우저 탭을 열어준다.
+
+> DB는 H2를 사용하므로 별도 설치 없이 바로 실행 가능하다.  
+> H2 콘솔: 백엔드 실행 후 포트 8080의 `/h2-console` 접속 (JDBC URL: `jdbc:h2:file:./data/studygroup`, username: `sa`, password: 없음)
 
 ## 프로젝트 구조
 
 ```
 StudyGroup/
-├── backend/    # Spring Boot
-└── frontend/   # React + Vite
+├── .devcontainer/   # Codespaces 환경 설정
+├── backend/         # Spring Boot
+├── frontend/        # React + Vite
+└── docs/            # 개발 가이드 문서
 ```
 
 백엔드는 도메인별 패키지(`auth`, `group`, `membership`, `board`, `schedule`, `todo`)로 분리되어 있으며, 팀원 각자가 담당 도메인을 독립적으로 개발한다.
