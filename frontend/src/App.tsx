@@ -1,4 +1,5 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
+import LandingPage from './pages/landing/LandingPage';
 import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
 import GroupDetailPage from './pages/group/GroupDetailPage';
@@ -13,6 +14,13 @@ import './App.css';
 
 function App() {
   const { user, logout } = useAuth();
+  const location = useLocation();
+  const isLanding = location.pathname === '/';
+
+  // 랜딩 페이지는 자체 네브바/푸터를 가지므로 전역 레이아웃 없이 단독 렌더링
+  if (isLanding) {
+    return <LandingPage />;
+  }
 
   return (
     <div className="app-layout">
@@ -48,25 +56,7 @@ function App() {
 
       <main className="app-main">
         <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="home-content">
-                <h1>스터디 그룹 관리 서비스</h1>
-                <p>함께 공부할 그룹을 만들고, 찾고, 관리하세요.</p>
-                <div className="hero-buttons">
-                  <Link to="/groups" className="hero-btn primary">
-                    그룹 둘러보기
-                  </Link>
-                  {!user && (
-                    <Link to="/signup" className="hero-btn secondary">
-                      시작하기
-                    </Link>
-                  )}
-                </div>
-              </div>
-            }
-          />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/groups" element={<GroupListPage />} />
           <Route path="/groups/new" element={<GroupFormPage />} />
           <Route path="/groups/:groupId" element={<GroupDetailPage />} />
