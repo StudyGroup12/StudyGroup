@@ -26,6 +26,12 @@ public enum ErrorCode {
     ALREADY_MEMBER(HttpStatus.BAD_REQUEST, "MBR002", "이미 가입되었거나 신청 대기 중인 그룹입니다."),
     NOT_MEMBER(HttpStatus.BAD_REQUEST, "MBR003", "그룹의 멤버가 아닙니다."),
 
+    // Board
+    BOARD_NOT_FOUND(HttpStatus.NOT_FOUND, "BOARD001", "게시글을 찾을 수 없습니다."),
+    NOT_BOARD_AUTHOR(HttpStatus.FORBIDDEN, "BOARD002", "게시글 작성자가 아닙니다."),
+    COMMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "BOARD003", "댓글을 찾을 수 없습니다."),
+    NOT_COMMENT_AUTHOR(HttpStatus.FORBIDDEN, "BOARD004", "댓글 작성자가 아닙니다."),
+
     // Common
     NOT_FOUND(HttpStatus.NOT_FOUND, "COMMON001", "요청한 리소스를 찾을 수 없습니다."),
     INVALID_INPUT(HttpStatus.BAD_REQUEST, "COMMON002", "잘못된 입력입니다."),

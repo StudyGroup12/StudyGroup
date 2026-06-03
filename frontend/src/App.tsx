@@ -5,6 +5,9 @@ import GroupDetailPage from './pages/group/GroupDetailPage';
 import GroupFormPage from './pages/group/GroupFormPage';
 import GroupListPage from './pages/group/GroupListPage';
 import MembershipPage from './pages/membership/MembershipPage';
+import BoardListPage from './pages/board/BoardListPage';
+import BoardDetailPage from './pages/board/BoardDetailPage';
+import BoardFormPage from './pages/board/BoardFormPage';
 import { useAuth } from './hooks/useAuth';
 import './App.css';
 
@@ -69,6 +72,10 @@ function App() {
           <Route path="/groups/:groupId" element={<GroupDetailPage />} />
           <Route path="/groups/:groupId/edit" element={<GroupFormPage />} />
           <Route path="/groups/:groupId/members" element={<MembershipPage />} />
+          <Route path="/groups/:groupId/boards" element={<BoardListPage />} />
+          <Route path="/groups/:groupId/boards/new" element={<BoardFormPage />} />
+          <Route path="/groups/:groupId/boards/:boardId" element={<BoardDetailPage />} />
+          <Route path="/groups/:groupId/boards/:boardId/edit" element={<BoardFormPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
         </Routes>
