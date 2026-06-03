@@ -53,4 +53,8 @@ public class Membership extends BaseEntity {
     public void reject() {
         this.status = MembershipStatus.REJECTED;
     }
+
+    public void updateRole(MembershipRole role) {
+        this.role = role;
+    }
 }

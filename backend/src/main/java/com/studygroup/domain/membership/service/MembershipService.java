@@ -138,4 +138,52 @@ public class MembershipService {
         membershipRepository.delete(membership);
         group.decreaseMemberCount();
     }
+
+    @Transactional
+    public void kick(Long groupId, Long targetMemberId, Long requesterId) {
+        StudyGroup group = studyGroupRepository.findById(groupId)
+                .orElseThrow(() -> new CustomException(ErrorCode.GROUP_NOT_FOUND));
+
+        if (!group.getOwnerId().equals(requesterId)) {
+            throw new CustomException(ErrorCode.NOT_GROUP_OWNER);
+        }
+
+        if (targetMemberId.equals(requesterId)) {
+            throw new CustomException(ErrorCode.INVALID_INPUT);
+        }
+
+        Membership membership = membershipRepository.findByGroupIdAndMemberId(groupId, targetMemberId)
+                .orElseThrow(() -> new CustomException(ErrorCode.MEMBERSHIP_NOT_FOUND));
+
+        membershipRepository.delete(membership);
+        group.decreaseMemberCount();
+    }
+
+    @Transactional
+    public void delegate(Long groupId, Long targetMemberId, Long requesterId) {
+        StudyGroup group = studyGroupRepository.findById(groupId)
+                .orElseThrow(() -> new CustomException(ErrorCode.GROUP_NOT_FOUND));
+
+        if (!group.getOwnerId().equals(requesterId)) {
+            throw new CustomException(ErrorCode.NOT_GROUP_OWNER);
+        }
+
+        if (targetMemberId.equals(requesterId)) {
+            throw new CustomException(ErrorCode.INVALID_INPUT);
+        }
+
+        Membership currentOwnerMembership = membershipRepository.findByGroupIdAndMemberId(groupId, requesterId)
+                .orElseThrow(() -> new CustomException(ErrorCode.MEMBERSHIP_NOT_FOUND));
+
+        Membership newOwnerMembership = membershipRepository.findByGroupIdAndMemberId(groupId, targetMemberId)
+                .orElseThrow(() -> new CustomException(ErrorCode.MEMBERSHIP_NOT_FOUND));
+
+        if (newOwnerMembership.getStatus() != MembershipStatus.ACCEPTED) {
+            throw new CustomException(ErrorCode.INVALID_INPUT);
+        }
+
+        currentOwnerMembership.updateRole(MembershipRole.MEMBER);
+        newOwnerMembership.updateRole(MembershipRole.OWNER);
+        group.updateOwnerId(targetMemberId);
+    }
 }

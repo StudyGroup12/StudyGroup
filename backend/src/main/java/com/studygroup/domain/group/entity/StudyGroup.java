@@ -80,4 +80,8 @@ public class StudyGroup extends BaseEntity {
         }
         this.currentMemberCount--;
     }
+
+    public void updateOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
 }

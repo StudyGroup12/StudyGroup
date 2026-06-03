@@ -10,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/groups/{groupId}/members")
+@RequestMapping("/api/groups/{groupId}/membership")
 public class MembershipController {
 
     private final MembershipService membershipService;
@@ -33,7 +34,7 @@ public class MembershipController {
         return ResponseEntity.ok(ApiResponse.success(membershipService.apply(groupId, memberId)));
     }
 
-    @PostMapping("/{targetMemberId}/approve")
+    @PostMapping("/approve/{targetMemberId}")
     public ResponseEntity<ApiResponse<Void>> approve(
             @PathVariable Long groupId,
             @PathVariable Long targetMemberId,
@@ -44,7 +45,7 @@ public class MembershipController {
         return ResponseEntity.ok(ApiResponse.success());
     }
 
-    @PostMapping("/{targetMemberId}/reject")
+    @PostMapping("/reject/{targetMemberId}")
     public ResponseEntity<ApiResponse<Void>> reject(
             @PathVariable Long groupId,
             @PathVariable Long targetMemberId,
@@ -55,7 +56,7 @@ public class MembershipController {
         return ResponseEntity.ok(ApiResponse.success());
     }
 
-    @GetMapping
+    @GetMapping("/members")
     public ResponseEntity<ApiResponse<List<MemberSummaryResponse>>> getMembers(@PathVariable Long groupId) {
         return ResponseEntity.ok(ApiResponse.success(membershipService.getMembers(groupId)));
     }
@@ -76,6 +77,28 @@ public class MembershipController {
     ) {
         Long requesterId = getMemberId(userDetails);
         return ResponseEntity.ok(ApiResponse.success(membershipService.getPendingMembers(groupId, requesterId)));
+    }
+
+    @DeleteMapping("/kick/{targetMemberId}")
+    public ResponseEntity<ApiResponse<Void>> kick(
+            @PathVariable Long groupId,
+            @PathVariable Long targetMemberId,
+            @AuthenticationPrincipal UserDetails userDetails
+    ) {
+        Long requesterId = getMemberId(userDetails);
+        membershipService.kick(groupId, targetMemberId, requesterId);
+        return ResponseEntity.ok(ApiResponse.success());
+    }
+
+    @PatchMapping("/delegate/{targetMemberId}")
+    public ResponseEntity<ApiResponse<Void>> delegate(
+            @PathVariable Long groupId,
+            @PathVariable Long targetMemberId,
+            @AuthenticationPrincipal UserDetails userDetails
+    ) {
+        Long requesterId = getMemberId(userDetails);
+        membershipService.delegate(groupId, targetMemberId, requesterId);
+        return ResponseEntity.ok(ApiResponse.success());
     }
 
     @DeleteMapping("/leave")

@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { deleteGroup, fetchGroupDetail } from '../../api/group.api';
-import { applyMembership, fetchMyMembership } from '../../api/membership.api';
+import { applyMembership, fetchMyMembership, leaveGroup } from '../../api/membership.api';
 import { useAuth } from '../../hooks/useAuth';
 import './Group.css';
 
@@ -36,6 +36,18 @@ const GroupDetailPage = () => {
     },
   });
 
+  const leaveMutation = useMutation({
+    mutationFn: () => leaveGroup(numericGroupId),
+    onSuccess: () => {
+      alert('탈퇴 처리되었습니다.');
+      queryClient.invalidateQueries({ queryKey: ['my-membership', numericGroupId] });
+      queryClient.invalidateQueries({ queryKey: ['group', numericGroupId] });
+    },
+    onError: (error: any) => {
+      alert(error.response?.data?.error?.message || '탈퇴에 실패했습니다.');
+    },
+  });
+
   const deleteMutation = useMutation({
     mutationFn: () => deleteGroup(numericGroupId),
     onSuccess: () => {
@@ -61,6 +73,12 @@ const GroupDetailPage = () => {
   const handleApply = () => {
     if (window.confirm('이 스터디 그룹에 가입 신청을 하시겠습니까?')) {
       applyMutation.mutate();
+    }
+  };
+
+  const handleLeave = () => {
+    if (window.confirm('정말 이 그룹에서 탈퇴하시겠습니까?')) {
+      leaveMutation.mutate();
     }
   };
 
@@ -117,7 +135,19 @@ const GroupDetailPage = () => {
           ) : (
             <>
               {isPending && <button className="button" disabled>승인 대기 중</button>}
-              {isAccepted && <button className="button" disabled>참여 중</button>}
+              {isAccepted && (
+                <>
+                  <button className="button" disabled>참여 중</button>
+                  <button
+                    type="button"
+                    className="button button-danger"
+                    onClick={handleLeave}
+                    disabled={leaveMutation.isPending}
+                  >
+                    탈퇴하기
+                  </button>
+                </>
+              )}
               {!myMembership && (
                 <button
                   type="button"
