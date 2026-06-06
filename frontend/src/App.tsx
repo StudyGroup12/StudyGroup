@@ -32,7 +32,7 @@ function App() {
       <header className="app-header">
         <nav className="nav-container">
           <Link to="/" className="logo">
-            StudyGroup
+            StudyMate
           </Link>
           <div className="nav-links">
             <Link to="/groups" className="nav-link">
@@ -51,7 +51,7 @@ function App() {
                 <Link to="/login" className="nav-link">
                   로그인
                 </Link>
-                <Link to="/signup" className="nav-link">
+                <Link to="/signup" className="nav-link nav-link--cta">
                   회원가입
                 </Link>
               </>
@@ -83,7 +83,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>&copy; 2024 StudyGroup. All rights reserved.</p>
+        <p>&copy; 2026 StudyMate. All rights reserved.</p>
       </footer>
     </div>
   );

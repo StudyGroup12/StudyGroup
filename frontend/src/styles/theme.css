@@ -1,0 +1,218 @@
+/* ============================================================
+   StudyMate 공용 디자인 토큰 — 모든 페이지가 공유
+   main.tsx 에서 전역 import
+   ============================================================ */
+
+:root {
+  /* 색상 */
+  --bg: #fafaf7; /* 밝은 오프화이트 배경 */
+  --surface: #ffffff; /* 카드 표면 */
+  --surface-2: #f4f5fb; /* 옅은 강조 표면 */
+  --text: #1a1a2e; /* 진한 남색 텍스트 */
+  --muted: #6b7280; /* 보조 텍스트 */
+  --stroke: #e5e7eb; /* 테두리 */
+  --accent: #4f6bed; /* 메인 블루 */
+  --accent-2: #6d5bd0; /* 인디고 */
+  --accent-soft: rgba(79, 107, 237, 0.1);
+  --danger: #e0556b;
+  --success: #34c759;
+
+  /* 형태 */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  /* 그림자 */
+  --shadow-sm: 0 4px 18px rgba(26, 26, 46, 0.06);
+  --shadow-md: 0 14px 34px rgba(26, 26, 46, 0.1);
+  --shadow-lg: 0 24px 50px rgba(26, 26, 46, 0.14);
+
+  /* 그라디언트 */
+  --gradient: linear-gradient(90deg, #4f6bed 0%, #6d5bd0 100%);
+
+  /* 폰트 */
+  --font-body: 'Nanum Gothic', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif;
+  --font-display: 'Spoqa Han Sans Neo', 'Nanum Gothic', sans-serif;
+}
+
+/* ---------- 기본 ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.4px;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* ---------- 공용 유틸 ---------- */
+.accent-gradient {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 공용 버튼 */
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.ui-btn:active {
+  transform: scale(0.97);
+}
+.ui-btn--primary {
+  color: #fff;
+  background: var(--gradient);
+  box-shadow: 0 8px 20px rgba(79, 107, 237, 0.28);
+}
+.ui-btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(79, 107, 237, 0.4);
+}
+.ui-btn--ghost {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--stroke);
+}
+.ui-btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.ui-btn--danger {
+  color: var(--danger);
+  background: var(--surface);
+  border-color: rgba(224, 85, 107, 0.35);
+}
+.ui-btn--danger:hover {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+}
+.ui-btn--sm {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+}
+.ui-btn--block {
+  width: 100%;
+}
+
+/* 공용 카드 */
+.ui-card {
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 공용 입력 */
+.ui-input,
+.ui-textarea,
+.ui-select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--stroke);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  box-sizing: border-box;
+}
+.ui-input:focus,
+.ui-textarea:focus,
+.ui-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* 공용 배지 */
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* 페이지 공통 헤더 */
+.ui-page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.ui-page-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.ui-page-sub {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+/* 빈 상태 */
+.ui-empty {
+  text-align: center;
+  padding: 64px 24px;
+  color: var(--muted);
+}
+
+/* ---------- 공용 키프레임 ---------- */
+@keyframes ui-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

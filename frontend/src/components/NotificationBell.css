@@ -2,40 +2,44 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
+  gap: 6px;
+  padding: 8px 14px;
   text-decoration: none;
-  color: inherit;
-  border-radius: 6px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-pill);
+  transition: color 0.18s ease, background 0.18s ease;
 }
 
 .nav-bell:hover {
-  background: rgba(0, 0, 0, 0.05);
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .nav-bell-icon {
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1;
 }
 
 .nav-bell-text {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .nav-bell-badge {
   position: absolute;
-  top: -4px;
-  right: -4px;
+  top: 0;
+  right: 2px;
   min-width: 18px;
   height: 18px;
   padding: 0 5px;
-  background: #cf222e;
+  background: var(--gradient);
   color: #fff;
-  font-size: 0.7rem;
-  font-weight: bold;
+  font-size: 0.68rem;
+  font-weight: 700;
   line-height: 18px;
   text-align: center;
-  border-radius: 999px;
-  border: 2px solid #fff;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--surface);
   box-sizing: content-box;
 }

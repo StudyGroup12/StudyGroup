@@ -1,5 +1,8 @@
+/* ============================================================
+   일정/출석 (목록/캘린더/상세/폼) — 토큰은 styles/theme.css
+   ============================================================ */
+
 .schedule-page {
-  padding: 24px;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -10,18 +13,20 @@
   align-items: flex-end;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .schedule-title-block h1 {
-  margin: 0 0 4px 0;
-  font-size: 1.6rem;
+  margin: 0 0 6px 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2rem);
+  font-weight: 700;
 }
 
 .schedule-title-block p {
   margin: 0;
-  color: #666;
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .schedule-toolbar-actions {
@@ -31,100 +36,116 @@
 
 .schedule-view-toggle {
   display: inline-flex;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
+  border: 1.5px solid var(--stroke);
+  border-radius: var(--radius-pill);
   overflow: hidden;
+  background: var(--surface);
 }
 
 .schedule-view-toggle button {
-  background: #fff;
+  background: transparent;
   border: 0;
-  padding: 6px 12px;
+  padding: 8px 16px;
   cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 0.85rem;
+  color: var(--muted);
+  transition: background 0.18s, color 0.18s;
 }
 
 .schedule-view-toggle button.active {
-  background: #2f6feb;
+  background: var(--gradient);
   color: #fff;
 }
 
 .schedule-calendar-wrapper {
-  background: #fff;
-  border: 1px solid #e1e4e8;
-  border-radius: 8px;
-  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  padding: 16px;
   height: 640px;
+  box-shadow: var(--shadow-sm);
 }
 
 /* ===== react-big-calendar 호버 강조 (월/주/일 뷰) ===== */
-
-/* 월 뷰 — 빈 날짜 칸 */
 .schedule-calendar-wrapper .rbc-day-bg {
   transition: background 0.12s ease, box-shadow 0.12s ease;
   cursor: pointer;
 }
 .schedule-calendar-wrapper .rbc-day-bg:hover {
-  background: rgba(47, 111, 235, 0.06);
-  box-shadow: inset 0 0 0 2px #2f6feb;
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 2px var(--accent);
 }
-
-/* 오늘 날짜는 호버 시 약간 더 진한 강조 */
 .schedule-calendar-wrapper .rbc-today.rbc-day-bg:hover {
-  background: rgba(47, 111, 235, 0.14);
+  background: rgba(79, 107, 237, 0.16);
 }
-
-/* 월 뷰 — 날짜 숫자 셀 */
+.schedule-calendar-wrapper .rbc-today {
+  background: rgba(79, 107, 237, 0.07);
+}
 .schedule-calendar-wrapper .rbc-date-cell {
   transition: color 0.12s ease;
 }
 .schedule-calendar-wrapper .rbc-date-cell:hover {
-  color: #2f6feb;
-  font-weight: 600;
+  color: var(--accent);
+  font-weight: 700;
 }
-
-/* 주/일 뷰 — 시간 슬롯 */
 .schedule-calendar-wrapper .rbc-day-slot .rbc-time-slot {
   transition: background 0.12s ease;
   cursor: pointer;
 }
 .schedule-calendar-wrapper .rbc-day-slot .rbc-time-slot:hover {
-  background: rgba(47, 111, 235, 0.08);
+  background: var(--accent-soft);
 }
-
-/* 이벤트 박스(일정 카드) 호버 — 살짝 떠오르는 느낌 */
 .schedule-calendar-wrapper .rbc-event {
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
   transition: transform 0.1s ease, box-shadow 0.15s ease, filter 0.1s ease;
 }
 .schedule-calendar-wrapper .rbc-event:hover {
   filter: brightness(1.08);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 4px 10px rgba(79, 107, 237, 0.3);
   transform: translateY(-1px);
 }
+.schedule-calendar-wrapper .rbc-toolbar button {
+  font-family: var(--font-body);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+}
+.schedule-calendar-wrapper .rbc-toolbar button.rbc-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
 
+/* 목록 */
 .schedule-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .schedule-row {
-  background: #fff;
-  border: 1px solid #e1e4e8;
-  border-radius: 8px;
-  transition: box-shadow 0.15s;
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
 }
 
 .schedule-row:hover {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: rgba(79, 107, 237, 0.3);
 }
 
 .schedule-row-link {
   display: block;
-  padding: 14px 18px;
+  padding: 18px 20px;
   color: inherit;
   text-decoration: none;
 }
@@ -132,21 +153,25 @@
 .schedule-row-title {
   margin: 0 0 6px 0;
   font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .schedule-row-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  color: #57606a;
+  color: var(--muted);
   font-size: 0.85rem;
 }
 
+/* 상세 */
 .schedule-detail {
-  background: #fff;
-  border: 1px solid #e1e4e8;
-  border-radius: 8px;
-  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
 }
 
 .schedule-detail-header {
@@ -155,16 +180,23 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 12px;
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
+  border-bottom: 1px solid var(--stroke);
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+}
+
+.schedule-detail-header h1 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
 }
 
 .schedule-detail-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  color: #57606a;
+  color: var(--muted);
   font-size: 0.9rem;
 }
 
@@ -175,33 +207,38 @@
 
 .schedule-description {
   white-space: pre-wrap;
-  line-height: 1.6;
-  margin-bottom: 24px;
+  line-height: 1.8;
+  margin-bottom: 26px;
+  color: var(--text);
 }
 
+/* 출석 요약 */
 .attendance-summary {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 12px;
+  margin-bottom: 18px;
 }
 
 .attendance-summary-item {
   flex: 1 1 100px;
-  background: #f6f8fa;
-  border-radius: 6px;
-  padding: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-sm);
+  padding: 16px;
   text-align: center;
 }
 
 .attendance-summary-item .count {
   display: block;
-  font-size: 1.4rem;
-  font-weight: bold;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .attendance-summary-item .label {
-  color: #57606a;
+  color: var(--muted);
   font-size: 0.85rem;
 }
 
@@ -209,21 +246,30 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .attendance-actions button {
   flex: 1 1 100px;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #d0d7de;
-  background: #fff;
+  padding: 12px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--stroke);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 700;
   cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+
+.attendance-actions button:hover:not(:disabled):not(.active) {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .attendance-actions button.active {
-  background: #2f6feb;
-  border-color: #2f6feb;
+  background: var(--gradient);
+  border-color: transparent;
   color: #fff;
 }
 
@@ -233,13 +279,13 @@
 }
 
 .attendance-window-notice {
-  background: #fff8c5;
-  border: 1px solid #d4a72c;
-  color: #57370b;
-  padding: 8px 12px;
-  border-radius: 6px;
+  background: #fff8e6;
+  border: 1px solid #e6c34a;
+  color: #7a5a08;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
   font-size: 0.85rem;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .attendance-table {
@@ -250,56 +296,70 @@
 
 .attendance-table th,
 .attendance-table td {
-  border-bottom: 1px solid #eaecef;
-  padding: 10px 8px;
+  border-bottom: 1px solid var(--stroke);
+  padding: 12px 10px;
   text-align: left;
 }
 
 .attendance-table th {
-  background: #f6f8fa;
-  color: #57606a;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-weight: 700;
 }
 
 .status-badge {
   display: inline-block;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: bold;
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .status-PRESENT { background: #dafbe1; color: #1a7f37; }
-.status-LATE    { background: #fff8c5; color: #9a6700; }
-.status-ABSENT  { background: #ffebe9; color: #cf222e; }
-.status-PENDING { background: #eaecef; color: #57606a; }
+.status-LATE    { background: #fff3cd; color: #9a6700; }
+.status-ABSENT  { background: #fdecee; color: var(--danger); }
+.status-PENDING { background: var(--surface-2); color: var(--muted); }
 
+/* 폼 */
 .schedule-form {
-  background: #fff;
-  border: 1px solid #e1e4e8;
-  border-radius: 8px;
-  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   max-width: 720px;
   margin: 0 auto;
+  box-shadow: var(--shadow-sm);
 }
 
 .schedule-form label {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   font-size: 0.9rem;
-  color: #444;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .schedule-form input,
 .schedule-form textarea {
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  padding: 8px 10px;
+  border: 1.5px solid var(--stroke);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
   font-size: 0.95rem;
-  font-family: inherit;
+  font-family: var(--font-body);
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.schedule-form input:focus,
+.schedule-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .schedule-form textarea {
@@ -314,6 +374,6 @@
 }
 
 .schedule-form-error {
-  color: #cf222e;
+  color: var(--danger);
   font-size: 0.85rem;
 }

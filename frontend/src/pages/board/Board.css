@@ -1,7 +1,10 @@
+/* ============================================================
+   게시판 (목록/상세/폼/댓글) — 토큰은 styles/theme.css
+   ============================================================ */
+
 .board-page {
-  max-width: 800px;
+  max-width: 820px;
   margin: 0 auto;
-  padding: 24px 16px;
 }
 
 .board-toolbar {
@@ -13,13 +16,16 @@
 }
 
 .board-title-block h1 {
-  margin: 0 0 4px;
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2rem);
+  font-weight: 700;
 }
 
 .board-title-block p {
   margin: 0;
-  color: #6b7280;
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .board-toolbar-actions {
@@ -32,53 +38,67 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid #e5e7eb;
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 
 .board-row {
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--stroke);
+}
+
+.board-row:last-child {
+  border-bottom: none;
 }
 
 .board-row-link {
   display: block;
-  padding: 16px 8px;
+  padding: 18px 20px;
   text-decoration: none;
   color: inherit;
+  transition: background 0.15s ease;
 }
 
 .board-row-link:hover {
-  background: #f9fafb;
+  background: var(--surface-2);
 }
 
 .board-row-title {
   margin: 0 0 8px;
   font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .board-row-meta {
   display: flex;
   gap: 16px;
-  color: #6b7280;
-  font-size: 0.85rem;
+  color: var(--muted);
+  font-size: 0.83rem;
 }
 
 /* 상세 */
 .board-detail-header {
-  border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 16px;
-  margin-bottom: 20px;
+  border-bottom: 1px solid var(--stroke);
+  padding-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .board-detail-header h1 {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 1.9rem);
+  font-weight: 700;
 }
 
 .board-detail-meta {
   display: flex;
   gap: 16px;
-  color: #6b7280;
-  font-size: 0.85rem;
-  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 0.83rem;
+  margin-bottom: 14px;
 }
 
 .board-detail-actions {
@@ -88,10 +108,11 @@
 
 .board-content {
   min-height: 120px;
-  line-height: 1.7;
+  line-height: 1.8;
   white-space: pre-wrap;
   word-break: break-word;
   margin-bottom: 24px;
+  color: var(--text);
 }
 
 .board-like-bar {
@@ -101,18 +122,24 @@
 }
 
 .like-button {
-  border: 1px solid #ef4444;
-  background: #fff;
-  color: #ef4444;
-  border-radius: 999px;
-  padding: 8px 20px;
+  border: 1.5px solid var(--danger);
+  background: var(--surface);
+  color: var(--danger);
+  border-radius: var(--radius-pill);
+  padding: 10px 24px;
   cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: 0.95rem;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.18s, color 0.18s, transform 0.18s;
+}
+
+.like-button:hover:not(:disabled) {
+  transform: translateY(-1px);
 }
 
 .like-button.liked {
-  background: #ef4444;
+  background: var(--danger);
   color: #fff;
 }
 
@@ -125,27 +152,44 @@
 .board-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
 }
 
 .board-form-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .board-form-field span {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
+  color: var(--text);
 }
 
 .board-form-field input,
 .board-form-field textarea {
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  padding: 10px;
+  border: 1.5px solid var(--stroke);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
   font: inherit;
+  font-family: var(--font-body);
+  background: var(--surface);
+  color: var(--text);
   resize: vertical;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.board-form-field input:focus,
+.board-form-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .board-form-actions {
@@ -156,27 +200,38 @@
 
 /* 댓글 */
 .comment-section {
-  border-top: 1px solid #e5e7eb;
-  padding-top: 24px;
+  border-top: 1px solid var(--stroke);
+  padding-top: 26px;
 }
 
 .comment-section h2 {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
+  font-weight: 700;
   margin: 0 0 16px;
 }
 
 .comment-form {
   display: flex;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .comment-form input {
   flex: 1;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  padding: 10px;
+  border: 1.5px solid var(--stroke);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
   font: inherit;
+  font-family: var(--font-body);
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.comment-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .comment-list {
@@ -190,37 +245,51 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid #f3f4f6;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--stroke);
+}
+
+.comment-item:last-child {
+  border-bottom: none;
 }
 
 .comment-author {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
+  color: var(--text);
 }
 
 .comment-text {
-  margin: 4px 0;
+  margin: 5px 0;
   white-space: pre-wrap;
   word-break: break-word;
+  color: var(--text);
 }
 
 .comment-date {
-  color: #9ca3af;
+  color: var(--muted);
   font-size: 0.75rem;
 }
 
 .comment-delete-btn {
   border: none;
   background: none;
-  color: #ef4444;
+  color: var(--danger);
   cursor: pointer;
   font-size: 0.8rem;
+  font-weight: 700;
   flex-shrink: 0;
 }
 
+.comment-delete-btn:hover {
+  text-decoration: underline;
+}
+
 .empty-msg {
-  color: #9ca3af;
+  color: var(--muted);
   text-align: center;
-  padding: 24px 0;
+  padding: 28px 20px;
+  background: var(--surface);
+  border: 1px dashed var(--stroke);
+  border-radius: var(--radius);
 }
