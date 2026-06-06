@@ -1,0 +1,319 @@
+.schedule-page {
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.schedule-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.schedule-title-block h1 {
+  margin: 0 0 4px 0;
+  font-size: 1.6rem;
+}
+
+.schedule-title-block p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.schedule-toolbar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.schedule-view-toggle {
+  display: inline-flex;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.schedule-view-toggle button {
+  background: #fff;
+  border: 0;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.schedule-view-toggle button.active {
+  background: #2f6feb;
+  color: #fff;
+}
+
+.schedule-calendar-wrapper {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 12px;
+  height: 640px;
+}
+
+/* ===== react-big-calendar 호버 강조 (월/주/일 뷰) ===== */
+
+/* 월 뷰 — 빈 날짜 칸 */
+.schedule-calendar-wrapper .rbc-day-bg {
+  transition: background 0.12s ease, box-shadow 0.12s ease;
+  cursor: pointer;
+}
+.schedule-calendar-wrapper .rbc-day-bg:hover {
+  background: rgba(47, 111, 235, 0.06);
+  box-shadow: inset 0 0 0 2px #2f6feb;
+}
+
+/* 오늘 날짜는 호버 시 약간 더 진한 강조 */
+.schedule-calendar-wrapper .rbc-today.rbc-day-bg:hover {
+  background: rgba(47, 111, 235, 0.14);
+}
+
+/* 월 뷰 — 날짜 숫자 셀 */
+.schedule-calendar-wrapper .rbc-date-cell {
+  transition: color 0.12s ease;
+}
+.schedule-calendar-wrapper .rbc-date-cell:hover {
+  color: #2f6feb;
+  font-weight: 600;
+}
+
+/* 주/일 뷰 — 시간 슬롯 */
+.schedule-calendar-wrapper .rbc-day-slot .rbc-time-slot {
+  transition: background 0.12s ease;
+  cursor: pointer;
+}
+.schedule-calendar-wrapper .rbc-day-slot .rbc-time-slot:hover {
+  background: rgba(47, 111, 235, 0.08);
+}
+
+/* 이벤트 박스(일정 카드) 호버 — 살짝 떠오르는 느낌 */
+.schedule-calendar-wrapper .rbc-event {
+  transition: transform 0.1s ease, box-shadow 0.15s ease, filter 0.1s ease;
+}
+.schedule-calendar-wrapper .rbc-event:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
+}
+
+.schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.schedule-row {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  transition: box-shadow 0.15s;
+}
+
+.schedule-row:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.schedule-row-link {
+  display: block;
+  padding: 14px 18px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.schedule-row-title {
+  margin: 0 0 6px 0;
+  font-size: 1.05rem;
+}
+
+.schedule-row-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #57606a;
+  font-size: 0.85rem;
+}
+
+.schedule-detail {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.schedule-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.schedule-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  color: #57606a;
+  font-size: 0.9rem;
+}
+
+.schedule-detail-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.schedule-description {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.attendance-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.attendance-summary-item {
+  flex: 1 1 100px;
+  background: #f6f8fa;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+
+.attendance-summary-item .count {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.attendance-summary-item .label {
+  color: #57606a;
+  font-size: 0.85rem;
+}
+
+.attendance-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.attendance-actions button {
+  flex: 1 1 100px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  background: #fff;
+  cursor: pointer;
+}
+
+.attendance-actions button.active {
+  background: #2f6feb;
+  border-color: #2f6feb;
+  color: #fff;
+}
+
+.attendance-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.attendance-window-notice {
+  background: #fff8c5;
+  border: 1px solid #d4a72c;
+  color: #57370b;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.attendance-table th,
+.attendance-table td {
+  border-bottom: 1px solid #eaecef;
+  padding: 10px 8px;
+  text-align: left;
+}
+
+.attendance-table th {
+  background: #f6f8fa;
+  color: #57606a;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.status-PRESENT { background: #dafbe1; color: #1a7f37; }
+.status-LATE    { background: #fff8c5; color: #9a6700; }
+.status-ABSENT  { background: #ffebe9; color: #cf222e; }
+.status-PENDING { background: #eaecef; color: #57606a; }
+
+.schedule-form {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.schedule-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.schedule-form input,
+.schedule-form textarea {
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.schedule-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.schedule-form-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.schedule-form-error {
+  color: #cf222e;
+  font-size: 0.85rem;
+}

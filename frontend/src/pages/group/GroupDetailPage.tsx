@@ -120,6 +120,11 @@ const GroupDetailPage = () => {
               게시판
             </Link>
           )}
+          {(isOwner || isAccepted) && (
+            <Link to={`/groups/${group.id}/schedules`} className="button">
+              일정
+            </Link>
+          )}
           {isOwner ? (
             <>
               <Link to={`/groups/${group.id}/members`} className="button">

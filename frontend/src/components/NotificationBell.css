@@ -1,0 +1,41 @@
+.nav-bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 6px;
+}
+
+.nav-bell:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.nav-bell-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.nav-bell-text {
+  font-size: 0.9rem;
+}
+
+.nav-bell-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: #cf222e;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  box-sizing: content-box;
+}
