@@ -1,7 +1,7 @@
 import api from './axios';
 import { ApiResponse } from '../types/auth.types';
 import { PageResponse } from '../types/group.types';
-import { Todo, TodoFormData, TodoProgress } from '../types/todo.types';
+import { PersonalTodo, Todo, TodoFormData, TodoProgress } from '../types/todo.types';
 
 interface TodoListParams {
   page?: number;
@@ -86,16 +86,14 @@ export const fetchPersonalTodoProgress = async (): Promise<ApiResponse<TodoProgr
   return response.data;
 };
 
-export const fetchPersonalTodoDetail = async (
-  todoId: number
-): Promise<ApiResponse<Todo>> => {
+export const fetchPersonalTodoDetail = async (todoId: number): Promise<ApiResponse<PersonalTodo>> => {
   const response = await api.get(`/api/todos/${todoId}`);
   return response.data;
 };
 
 export const createPersonalTodo = async (
   data: TodoFormData
-): Promise<ApiResponse<Todo>> => {
+): Promise<ApiResponse<PersonalTodo>> => {
   const response = await api.post('/api/todos', toRequestBody(data));
   return response.data;
 };
@@ -103,7 +101,7 @@ export const createPersonalTodo = async (
 export const updatePersonalTodo = async (
   todoId: number,
   data: TodoFormData
-): Promise<ApiResponse<Todo>> => {
+): Promise<ApiResponse<PersonalTodo>> => {
   const response = await api.put(`/api/todos/${todoId}`, toRequestBody(data));
   return response.data;
 };
@@ -111,7 +109,7 @@ export const updatePersonalTodo = async (
 export const updatePersonalTodoComplete = async (
   todoId: number,
   completed: boolean
-): Promise<ApiResponse<Todo>> => {
+): Promise<ApiResponse<PersonalTodo>> => {
   const response = await api.patch(`/api/todos/${todoId}/complete`, { completed });
   return response.data;
 };

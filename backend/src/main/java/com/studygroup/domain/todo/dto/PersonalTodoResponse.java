@@ -1,13 +1,12 @@
 package com.studygroup.domain.todo.dto;
 
-import com.studygroup.domain.todo.entity.Todo;
+import com.studygroup.domain.todo.entity.PersonalTodo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public record TodoResponse(
+public record PersonalTodoResponse(
         Long id,
-        Long groupId,
         Long memberId,
         String title,
         String description,
@@ -17,10 +16,9 @@ public record TodoResponse(
         LocalDateTime createdAt,
         LocalDateTime updatedAt
 ) {
-    public static TodoResponse from(Todo todo) {
-        return new TodoResponse(
+    public static PersonalTodoResponse from(PersonalTodo todo) {
+        return new PersonalTodoResponse(
                 todo.getId(),
-                todo.getGroupId(),
                 todo.getMemberId(),
                 todo.getTitle(),
                 todo.getDescription(),

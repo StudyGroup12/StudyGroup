@@ -21,8 +21,8 @@ import java.time.LocalDateTime;
 @Table(
         name = "todos",
         indexes = {
-                @Index(name = "idx_todos_group_member", columnList = "groupId,memberId"),
-                @Index(name = "idx_todos_group_member_completed", columnList = "groupId,memberId,completed")
+                @Index(name = "idx_todos_group", columnList = "groupId"),
+                @Index(name = "idx_todos_group_completed", columnList = "groupId,completed")
         }
 )
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

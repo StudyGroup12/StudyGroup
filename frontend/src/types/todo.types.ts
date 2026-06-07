@@ -1,6 +1,18 @@
 export interface Todo {
   id: number;
-  groupId: number | null;
+  groupId: number;
+  memberId: number;
+  title: string;
+  description: string | null;
+  dueDate: string | null;
+  completed: boolean;
+  completedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PersonalTodo {
+  id: number;
   memberId: number;
   title: string;
   description: string | null;

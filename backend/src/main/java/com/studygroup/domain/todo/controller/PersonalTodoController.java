@@ -2,8 +2,8 @@ package com.studygroup.domain.todo.controller;
 
 import com.studygroup.domain.todo.dto.CompleteTodoRequest;
 import com.studygroup.domain.todo.dto.CreateTodoRequest;
+import com.studygroup.domain.todo.dto.PersonalTodoResponse;
 import com.studygroup.domain.todo.dto.TodoProgressResponse;
-import com.studygroup.domain.todo.dto.TodoResponse;
 import com.studygroup.domain.todo.dto.UpdateTodoRequest;
 import com.studygroup.domain.todo.service.PersonalTodoService;
 import com.studygroup.global.response.ApiResponse;
@@ -35,7 +35,7 @@ public class PersonalTodoController {
     private final PersonalTodoService personalTodoService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<Page<TodoResponse>>> getTodos(
+    public ResponseEntity<ApiResponse<Page<PersonalTodoResponse>>> getTodos(
             @RequestParam(required = false) Boolean completed,
             @PageableDefault(size = 10) Pageable pageable,
             @AuthenticationPrincipal UserDetails userDetails
@@ -53,7 +53,7 @@ public class PersonalTodoController {
     }
 
     @GetMapping("/{todoId}")
-    public ResponseEntity<ApiResponse<TodoResponse>> getTodo(
+    public ResponseEntity<ApiResponse<PersonalTodoResponse>> getTodo(
             @PathVariable Long todoId,
             @AuthenticationPrincipal UserDetails userDetails
     ) {
@@ -62,7 +62,7 @@ public class PersonalTodoController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<TodoResponse>> createTodo(
+    public ResponseEntity<ApiResponse<PersonalTodoResponse>> createTodo(
             @RequestBody @Valid CreateTodoRequest request,
             @AuthenticationPrincipal UserDetails userDetails
     ) {
@@ -72,7 +72,7 @@ public class PersonalTodoController {
     }
 
     @PutMapping("/{todoId}")
-    public ResponseEntity<ApiResponse<TodoResponse>> updateTodo(
+    public ResponseEntity<ApiResponse<PersonalTodoResponse>> updateTodo(
             @PathVariable Long todoId,
             @RequestBody @Valid UpdateTodoRequest request,
             @AuthenticationPrincipal UserDetails userDetails
@@ -82,7 +82,7 @@ public class PersonalTodoController {
     }
 
     @PatchMapping("/{todoId}/complete")
-    public ResponseEntity<ApiResponse<TodoResponse>> updateComplete(
+    public ResponseEntity<ApiResponse<PersonalTodoResponse>> updateComplete(
             @PathVariable Long todoId,
             @RequestBody @Valid CompleteTodoRequest request,
             @AuthenticationPrincipal UserDetails userDetails
