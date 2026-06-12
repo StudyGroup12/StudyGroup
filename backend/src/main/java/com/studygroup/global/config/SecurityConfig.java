@@ -84,7 +84,8 @@ public class SecurityConfig {
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
+        // API 경로에만 CORS 적용. /h2-console 등은 same-origin 접근이라 CORS 검사 대상에서 제외
+        source.registerCorsConfiguration("/api/**", config);
         return source;
     }
 

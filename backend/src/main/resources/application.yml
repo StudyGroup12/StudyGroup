@@ -23,3 +23,6 @@ jwt:
 
 server:
   port: 8080
+  # 리버스 프록시(Codespaces 포워딩) 뒤에서 X-Forwarded-* 헤더를 존중해
+  # 리다이렉트/절대 URL을 localhost가 아닌 외부 도메인으로 생성 (H2 콘솔 등)
+  forward-headers-strategy: framework
