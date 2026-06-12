@@ -8,6 +8,9 @@ spring:
     console:
       enabled: true
       path: /h2-console
+      settings:
+        # Codespaces 포워딩 도메인은 원격 접속으로 인식되므로 허용 (개발 전용)
+        web-allow-others: true
   jpa:
     hibernate:
       ddl-auto: update
