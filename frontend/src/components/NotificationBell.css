@@ -33,9 +33,9 @@
 }
 
 .nav-bell-badge {
-  position: absolute;
-  top: -6px;
-  right: -5px;
+  position: relative;
+  margin-left: -4px;
+  margin-right: 2px;
   min-width: 18px;
   height: 18px;
   padding: 0 5px;
@@ -48,4 +48,5 @@
   border-radius: var(--radius-pill);
   border: 2px solid var(--surface);
   box-sizing: content-box;
+  z-index: 1;
 }
