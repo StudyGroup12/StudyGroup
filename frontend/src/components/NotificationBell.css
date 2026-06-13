@@ -17,6 +17,12 @@
   background: var(--accent-soft);
 }
 
+.nav-bell-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .nav-bell-icon {
   font-size: 1.05rem;
   line-height: 1;
@@ -28,8 +34,8 @@
 
 .nav-bell-badge {
   position: absolute;
-  top: 0;
-  right: 2px;
+  top: -6px;
+  right: -8px;
   min-width: 18px;
   height: 18px;
   padding: 0 5px;
