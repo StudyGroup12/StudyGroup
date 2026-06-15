@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCreateTodo, useTodoDetail, useUpdateTodo } from '../../hooks/useTodos';
-import { LoginRequired, TodoFormView, getApiErrorMessage } from './TodoShared';
+import { LoginRequired, TodoFormView } from './TodoShared';
+import { getApiErrorMessage } from '../../utils/apiError';
 
 const TodoFormPage = () => {
   const { groupId, todoId } = useParams();

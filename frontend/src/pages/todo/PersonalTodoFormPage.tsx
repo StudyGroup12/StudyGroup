@@ -4,7 +4,8 @@ import {
   usePersonalTodoDetail,
   useUpdatePersonalTodo,
 } from '../../hooks/useTodos';
-import { LoginRequired, TodoFormView, getApiErrorMessage } from './TodoShared';
+import { LoginRequired, TodoFormView } from './TodoShared';
+import { getApiErrorMessage } from '../../utils/apiError';
 
 const PersonalTodoFormPage = () => {
   const { todoId } = useParams();

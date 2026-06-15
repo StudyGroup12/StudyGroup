@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createBoard, fetchBoardDetail, updateBoard } from '../../api/board.api';
+import { getApiErrorMessage } from '../../utils/apiError';
 import './Board.css';
 
 const BoardFormPage = () => {
@@ -38,8 +39,8 @@ const BoardFormPage = () => {
       queryClient.invalidateQueries({ queryKey: ['boards', numericGroupId] });
       navigate(`/groups/${numericGroupId}/boards/${response.data.id}`);
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '저장에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '저장에 실패했습니다.'));
     },
   });
 

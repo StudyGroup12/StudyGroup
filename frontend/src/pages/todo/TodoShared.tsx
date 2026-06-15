@@ -1,19 +1,10 @@
 import { FormEvent, ReactNode, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TodoFormData, TodoProgress } from '../../types/todo.types';
+import { TodoFilter } from '../../utils/todoFilter';
 import './Todo.css';
 
-export type TodoFilter = 'all' | 'active' | 'completed';
-
-export const toCompletedParam = (filter: TodoFilter): boolean | undefined => {
-  if (filter === 'active') return false;
-  if (filter === 'completed') return true;
-  return undefined;
-};
-
-export const getApiErrorMessage = (error: unknown, fallback: string): string =>
-  (error as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error
-    ?.message ?? fallback;
+export type { TodoFilter };
 
 /** 목록/폼에서 공통으로 쓰는 todo 형태 (Todo · PersonalTodo 모두 충족) */
 export interface TodoItem {

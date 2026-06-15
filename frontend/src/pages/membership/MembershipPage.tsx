@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchGroupMembers, fetchPendingMembers, approveMembership, rejectMembership, kickMember, delegateOwnership } from '../../api/membership.api';
 import { MemberSummary } from '../../types/membership.types';
@@ -12,7 +12,7 @@ const MembershipPage: React.FC = () => {
   const [pendingMembers, setPendingMembers] = useState<MemberSummary[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     if (!groupId) return;
     try {
       const [membersData, pendingData] = await Promise.all([
@@ -26,11 +26,11 @@ const MembershipPage: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [groupId]);
 
   useEffect(() => {
     loadData();
-  }, [groupId]);
+  }, [loadData]);
 
   const handleApprove = async (memberId: number) => {
     if (!groupId) return;

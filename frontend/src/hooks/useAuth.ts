@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { getMyInfo, login, signup } from '../api/auth.api';
 import { LoginRequest, SignupRequest } from '../types/auth.types';
+import { getApiErrorMessage } from '../utils/apiError';
 
 export const useAuth = () => {
   const queryClient = useQueryClient();
@@ -13,8 +14,8 @@ export const useAuth = () => {
       alert('회원가입이 완료되었습니다. 로그인해주세요.');
       navigate('/login');
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '회원가입에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '회원가입에 실패했습니다.'));
     },
   });
 
@@ -25,8 +26,8 @@ export const useAuth = () => {
       queryClient.invalidateQueries({ queryKey: ['me'] });
       navigate('/');
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '로그인에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '로그인에 실패했습니다.'));
     },
   });
 

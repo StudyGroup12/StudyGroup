@@ -9,14 +9,9 @@ import {
   useTodoProgress,
   useUpdateTodoComplete,
 } from '../../hooks/useTodos';
-import {
-  LoginRequired,
-  TodoFilter,
-  TodoItem,
-  TodoListView,
-  getApiErrorMessage,
-  toCompletedParam,
-} from './TodoShared';
+import { LoginRequired, TodoFilter, TodoItem, TodoListView } from './TodoShared';
+import { toCompletedParam } from '../../utils/todoFilter';
+import { getApiErrorMessage } from '../../utils/apiError';
 
 const TodoListPage = () => {
   const { groupId } = useParams();

@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createGroup, fetchGroupDetail, updateGroup } from '../../api/group.api';
 import { useAuth } from '../../hooks/useAuth';
 import { GroupFormData } from '../../types/group.types';
+import { getApiErrorMessage } from '../../utils/apiError';
 import './Group.css';
 
 const initialForm: GroupFormData = {
@@ -45,8 +46,8 @@ const GroupFormPage = () => {
       queryClient.invalidateQueries({ queryKey: ['groups'] });
       navigate(`/groups/${response.data.id}`);
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '그룹 생성에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '그룹 생성에 실패했습니다.'));
     },
   });
 
@@ -57,8 +58,8 @@ const GroupFormPage = () => {
       queryClient.invalidateQueries({ queryKey: ['group', numericGroupId] });
       navigate(`/groups/${response.data.id}`);
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '그룹 수정에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '그룹 수정에 실패했습니다.'));
     },
   });
 

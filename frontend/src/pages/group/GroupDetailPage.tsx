@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { deleteGroup, fetchGroupDetail } from '../../api/group.api';
 import { applyMembership, fetchMyMembership, leaveGroup } from '../../api/membership.api';
 import { useAuth } from '../../hooks/useAuth';
+import { getApiErrorMessage } from '../../utils/apiError';
 import './Group.css';
 
 const GroupDetailPage = () => {
@@ -31,8 +32,8 @@ const GroupDetailPage = () => {
       alert('가입 신청이 완료되었습니다.');
       queryClient.invalidateQueries({ queryKey: ['my-membership', numericGroupId] });
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '가입 신청에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '가입 신청에 실패했습니다.'));
     },
   });
 
@@ -43,8 +44,8 @@ const GroupDetailPage = () => {
       queryClient.invalidateQueries({ queryKey: ['my-membership', numericGroupId] });
       queryClient.invalidateQueries({ queryKey: ['group', numericGroupId] });
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '탈퇴에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '탈퇴에 실패했습니다.'));
     },
   });
 
@@ -54,8 +55,8 @@ const GroupDetailPage = () => {
       queryClient.invalidateQueries({ queryKey: ['groups'] });
       navigate('/groups');
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '그룹 삭제에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '그룹 삭제에 실패했습니다.'));
     },
   });
 

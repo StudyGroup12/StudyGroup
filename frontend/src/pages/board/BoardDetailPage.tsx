@@ -11,6 +11,7 @@ import {
 } from '../../api/board.api';
 import { fetchGroupDetail } from '../../api/group.api';
 import { useAuth } from '../../hooks/useAuth';
+import { getApiErrorMessage } from '../../utils/apiError';
 import './Board.css';
 
 const BoardDetailPage = () => {
@@ -48,8 +49,8 @@ const BoardDetailPage = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['board', numericGroupId, numericBoardId] });
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '좋아요 처리에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '좋아요 처리에 실패했습니다.'));
     },
   });
 
@@ -59,8 +60,8 @@ const BoardDetailPage = () => {
       queryClient.invalidateQueries({ queryKey: ['boards', numericGroupId] });
       navigate(`/groups/${numericGroupId}/boards`);
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '게시글 삭제에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '게시글 삭제에 실패했습니다.'));
     },
   });
 
@@ -71,8 +72,8 @@ const BoardDetailPage = () => {
       queryClient.invalidateQueries({ queryKey: ['comments', numericGroupId, numericBoardId] });
       queryClient.invalidateQueries({ queryKey: ['board', numericGroupId, numericBoardId] });
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '댓글 작성에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '댓글 작성에 실패했습니다.'));
     },
   });
 
@@ -82,8 +83,8 @@ const BoardDetailPage = () => {
       queryClient.invalidateQueries({ queryKey: ['comments', numericGroupId, numericBoardId] });
       queryClient.invalidateQueries({ queryKey: ['board', numericGroupId, numericBoardId] });
     },
-    onError: (error: any) => {
-      alert(error.response?.data?.error?.message || '댓글 삭제에 실패했습니다.');
+    onError: (error) => {
+      alert(getApiErrorMessage(error, '댓글 삭제에 실패했습니다.'));
     },
   });
 
