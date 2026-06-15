@@ -22,6 +22,7 @@
     }
   },
   "postCreateCommand": "cd frontend && npm install",
+  "postAttachCommand": "git pull --ff-only origin main || true",
   "customizations": {
     "vscode": {
       "extensions": [
