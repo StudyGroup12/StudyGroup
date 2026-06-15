@@ -66,6 +66,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # 기본 GITHUB_TOKEN(github-actions[bot]) 인증 헤더를 심지 않도록 비활성화.
+          # 그래야 아래 remote URL의 SERVER_SYNC_TOKEN이 그대로 사용됨.
+          persist-credentials: false
 
       - name: Push to Server/main
         run: |
