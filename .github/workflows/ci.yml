@@ -70,7 +70,14 @@ jobs:
           # 그래야 아래 remote URL의 SERVER_SYNC_TOKEN이 그대로 사용됨.
           persist-credentials: false
 
-      - name: Push to Server/main
+      - name: Push to Server/main (워크플로우 파일 제외)
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Server 레포는 데모 실행용 미러이므로 CI/CD 워크플로우는 동기화하지 않는다.
+          # (PAT에 workflow 스코프가 없으면 워크플로우 파일 push가 거부됨)
+          rm -rf .github/workflows
+          git add -A
+          git commit -m "deploy: sync from StudyGroup (워크플로우 제외)" || true
           git remote add server https://x-access-token:${{ secrets.SERVER_SYNC_TOKEN }}@github.com/StudyGroup12/Server.git
           git push server HEAD:main --force
