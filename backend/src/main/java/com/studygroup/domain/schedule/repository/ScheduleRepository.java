@@ -14,6 +14,9 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
     List<Schedule> findByGroupIdAndStartAtBetweenOrderByStartAtAsc(Long groupId, LocalDateTime from, LocalDateTime to);
 
+    /** 통계용: 이미 시작된(지난) 일정 — 출석률 분모로 사용 */
+    List<Schedule> findByGroupIdAndStartAtBefore(Long groupId, LocalDateTime time);
+
     /** 시작 30분 후 ± 1분 윈도우에 들어오면서 아직 리마인더 미발송인 일정. */
     List<Schedule> findByReminderSentAtIsNullAndStartAtBetween(LocalDateTime from, LocalDateTime to);
 }

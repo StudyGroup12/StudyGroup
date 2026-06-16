@@ -131,6 +131,21 @@ const GroupDetailPage = () => {
               공동 할일
             </Link>
           )}
+          {(isOwner || isAccepted) && (
+            <Link to={`/groups/${group.id}/goals`} className="button">
+              스터디 목표
+            </Link>
+          )}
+          {(isOwner || isAccepted) && (
+            <Link to={`/groups/${group.id}/study-timer`} className="button">
+              학습 타이머
+            </Link>
+          )}
+          {(isOwner || isAccepted) && (
+            <Link to={`/groups/${group.id}/stats`} className="button">
+              학습 통계
+            </Link>
+          )}
           {isOwner ? (
             <>
               <Link to={`/groups/${group.id}/members`} className="button">

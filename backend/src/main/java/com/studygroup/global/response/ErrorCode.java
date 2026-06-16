@@ -53,7 +53,15 @@ public enum ErrorCode {
 
     // Todo
     TODO_NOT_FOUND(HttpStatus.NOT_FOUND, "TODO001", "할일을 찾을 수 없습니다."),
-    NOT_TODO_OWNER(HttpStatus.FORBIDDEN, "TODO002", "할일을 수정할 권한이 없습니다.");
+    NOT_TODO_OWNER(HttpStatus.FORBIDDEN, "TODO002", "할일을 수정할 권한이 없습니다."),
+
+    // Study Time
+    STUDY_SESSION_ALREADY_RUNNING(HttpStatus.BAD_REQUEST, "STT001", "이미 진행 중인 학습 세션이 있습니다."),
+    STUDY_SESSION_NOT_RUNNING(HttpStatus.BAD_REQUEST, "STT002", "진행 중인 학습 세션이 없습니다."),
+
+    // Goal
+    GOAL_NOT_FOUND(HttpStatus.NOT_FOUND, "GOAL001", "스터디 목표를 찾을 수 없습니다."),
+    NOT_GOAL_OWNER(HttpStatus.FORBIDDEN, "GOAL002", "목표를 수정할 권한이 없습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;

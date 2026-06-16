@@ -11,6 +11,8 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     List<Attendance> findByScheduleId(Long scheduleId);
 
+    List<Attendance> findByScheduleIdIn(List<Long> scheduleIds);
+
     Optional<Attendance> findByScheduleIdAndMemberId(Long scheduleId, Long memberId);
 
     long countByScheduleIdAndStatus(Long scheduleId, AttendanceStatus status);

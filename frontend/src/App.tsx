@@ -16,6 +16,10 @@ import TodoListPage from './pages/todo/TodoListPage';
 import TodoFormPage from './pages/todo/TodoFormPage';
 import PersonalTodoListPage from './pages/todo/PersonalTodoListPage';
 import PersonalTodoFormPage from './pages/todo/PersonalTodoFormPage';
+import GroupStatsPage from './pages/stats/GroupStatsPage';
+import StudyTimerPage from './pages/studytime/StudyTimerPage';
+import GoalListPage from './pages/goal/GoalListPage';
+import GoalFormPage from './pages/goal/GoalFormPage';
 import NotificationPage from './pages/notification/NotificationPage';
 import NotificationBell from './components/NotificationBell';
 import { useAuth } from './hooks/useAuth';
@@ -86,6 +90,11 @@ function App() {
           <Route path="/groups/:groupId/todos" element={<TodoListPage />} />
           <Route path="/groups/:groupId/todos/new" element={<TodoFormPage />} />
           <Route path="/groups/:groupId/todos/:todoId/edit" element={<TodoFormPage />} />
+          <Route path="/groups/:groupId/stats" element={<GroupStatsPage />} />
+          <Route path="/groups/:groupId/study-timer" element={<StudyTimerPage />} />
+          <Route path="/groups/:groupId/goals" element={<GoalListPage />} />
+          <Route path="/groups/:groupId/goals/new" element={<GoalFormPage />} />
+          <Route path="/groups/:groupId/goals/:goalId/edit" element={<GoalFormPage />} />
           <Route path="/todos" element={<PersonalTodoListPage />} />
           <Route path="/todos/new" element={<PersonalTodoFormPage />} />
           <Route path="/todos/:todoId/edit" element={<PersonalTodoFormPage />} />
