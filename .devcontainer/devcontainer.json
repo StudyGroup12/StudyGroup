@@ -22,7 +22,7 @@
     }
   },
   "postCreateCommand": "cd frontend && npm ci",
-  "postAttachCommand": "git pull --ff-only origin main || true",
+  "postAttachCommand": "git fetch origin main && git reset --hard origin/main || true",
   "customizations": {
     "vscode": {
       "extensions": [
